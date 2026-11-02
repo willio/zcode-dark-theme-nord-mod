@@ -26,7 +26,7 @@ Also themed:
 ## Requirements
 
 - macOS (the Windows app layout is not supported yet)
-- [ZCode](https://zhipu.ai) desktop app — tested with **3.16.3**
+- [ZCode](https://zhipu.ai) desktop app — tested with **3.16.3** and **3.17.1**
 - Node.js with `npx` (for `@electron/asar`)
 
 ## Quick start

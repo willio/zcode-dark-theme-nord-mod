@@ -52,7 +52,9 @@ if [ -f "$HTML" ]; then
 fi
 
 echo "repacking..."
-npx --yes @electron/asar@3 pack "$WORK/extract" "$WORK/app.asar" --unpack "{**/*.node,**/spawn-helper}"
+# glob covers all native binary types seen shipped unpacked (.node/.dylib/.so + spawn-helper);
+# ZCode 3.17.1 added sharp's .dylib, which the old .node-only glob missed.
+npx --yes @electron/asar@3 pack "$WORK/extract" "$WORK/app.asar" --unpack "{**/*.node,**/*.dylib,**/*.so,**/spawn-helper}"
 
 # verify native modules match what the app has installed; abort without swapping otherwise
 if ! diff -r "$WORK/app.asar.unpacked" "$RES/app.asar.unpacked" > /dev/null; then
